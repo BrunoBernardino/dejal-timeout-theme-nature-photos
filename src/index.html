@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Nature Photos</title>
+
+<script>
+(() => {
+  const hideLoading = () => {
+    const element = document.getElementById('loading');
+    element.className = 'hidden';
+  };
+
+  const showPhoto = () => {
+    const element = document.getElementById('photo');
+    element.className = '';
+  };
+
+  const showError = (message) => {
+    hideLoading();
+    const element = document.getElementById('error');
+    element.className = '';
+    element.innerText = message;
+  };
+
+  const fetchPhoto = async () => {
+    const apiUrl = 'https://nature-photos.brn.sh';
+
+    try {
+      const response = await window.fetch(apiUrl);
+      const photo = await response.json();
+
+      // Preload image
+      const currentImage = new Image(1920, 1300);
+      currentImage.src = photo.src;
+
+      const imageElement = document.getElementById('photo');
+      const linkElement = document.getElementById('photo-url');
+      imageElement.style.backgroundImage = `url('${photo.src}')`;
+      imageElement.setAttribute('title', photo.alt);
+      linkElement.setAttribute('href', photo.url);
+
+      hideLoading();
+      showPhoto();
+    } catch (error) {
+      showError(error);
+    }
+  };
+
+  window.addEventListener('load', () => {
+    fetchPhoto();
+  });
+})();
+</script>
+
+<style type="text/css">
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  background: #000;
+}
+#main
+{
+  width: 100vw;
+  font-size: 3rem;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#loading {
+  flex: 1;
+  text-align: center;
+}
+#photo-url {
+  flex: 1;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+#photo {
+  display: flex;
+  flex: 1;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+#pexels-logo {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  width: 120px;
+}
+.hidden {
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+  <div id="main">
+    <span id="loading">Loading...</span>
+    <span id="error" class="hidden"></span>
+    <a href="#" id="photo-url" target="_blank" rel="noreferrer noopener">
+      <div id="photo" class="hidden" title=""></div>
+    </a>
+    <a href="https://www.pexels.com" target="_blank" rel="noreferrer noopener" title="Free Photos by Pexels">
+      <img id="pexels-logo" src="https://images.pexels.com/lib/api/pexels-white.png" alt="Pexels logo" />
+    </a>
+  </div>
+
+</body>
+</html>

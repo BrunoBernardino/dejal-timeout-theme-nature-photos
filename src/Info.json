@@ -1,0 +1,19 @@
+{
+  "author": {
+    "name" : "Bruno Bernardino",
+    "email" : "me@brunobernardino.com",
+    "url" : "https://brunobernardino.com/"
+  },
+  "credits": {
+    "url": "https://pexels.com",
+    "name": "pexels.com"
+  },
+  "comments" : "Free HD Nature Wallpapers by Pexels",
+  "rootDocument" : "index.html",
+  "type" : "html5",
+  "created" : "2020-07-05",
+  "identifier" : "NaturePhotos",
+  "version" : 1,
+  "modified" : "2020-07-05",
+  "name" : "Nature Photos"
+}
