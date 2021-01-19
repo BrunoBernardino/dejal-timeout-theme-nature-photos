@@ -2,7 +2,7 @@
 
 Theme for Dejal's Time Out that shows images from a "Nature" search in [Pexels](https://pexels.com).
 
-Proxied by https://nature-photos.brn.sh
+Proxied by https://nature-photos.onbrn.com
 
 ## Development
 
